@@ -15,66 +15,51 @@
     <?php require "assets/_header.php"; ?>
     <?php require "assets/_dbconnect.php"; ?>
 
-    <!-- Carousel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/images/learn_code.jpg" class="d-block w-100" alt="learn_code" height="500px">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/images/coding_community.jpg" class="d-block w-100" alt="coding_community" height="500px">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/images/coding_challenge.jpg" class="d-block w-100" alt="coding_challenge" height="500px">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- Carousel Ends Here -->
-
     <div class="container-fluid mt-5 ">
         <!-- MAIN Body -->
 
-        <h1>Coding Dojo - Categories</h1>
+        <!-- <h1>Coding Dojo - Categories</h1> -->
         <div class="row">
             <!-- Home Page Body -->
             <div class="col-md-9">
-                <div class="row my-3">
-
-                    <?php
-                    $sql = "SELECT * FROM `categories`";
-                    $result = mysqli_query($conn, $sql);
-                    //  Cards starts from here 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '  <div class="col-md-4 mb-3">
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="https://source.unsplash.com/400x300/?coding,'. $row['category_name'] .'" class="card-img-top" alt="..." height="200px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">' . $row['category_name'] . '</h5>
-                                            <p class="card-text">' . $row['category_desc'] . '</p>
-                                            <a href="#" class="btn btn-primary">View Threads</a>
-                                        </div>
-                                    </div>
-                                </div>';
-                    }
-                    ?>
+                <!-- card for some Information about the community and their rules to follow -->
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="display-4">Welcome to Python Community</h1>
+                        <p class="lead">Python is a high-level, interpreted, general-purpose programming language. 
+                            Its design philosophy emphasizes code readability with the use of significant indentation.</p>
+                        <hr class="my-4">
+                        <h6>Some Rules Of this Community You Must Follow for Better interactions</h6>
+                        <ul>
+                            <li>No Spam / Advertising / Self-promote in the forums.</li>
+                            <li>Remain respectful of other members at all times.</li>
+                            <li>Do not post “offensive” posts, links or images.</li>
+                            <li>Do not cross post questions.</li>
+                            <li>Do not PM users asking for help.</li>
+                            <li>Do not post copyright-infringing material.</li>
+                        </ul>
+                        
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    </div>
                 </div>
+
+
+                <div>
+                    <div class="d-flex align-items-center mt-3">
+                        <div class="flex-shrink-0">
+                            <h3>Browse questions</h3>
+                        <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            This is some content from a media component. You can replace this with any content and adjust it as needed.
+                        </div>
+                    </div>
+                </div>
+                    
             </div>
 
             <!-- SIDEBAR -->
-            <div class="col-md-3 mt-3" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+            <div class="col-md-3 mt-0" style="border: 1px solid #d6d6d4; border-radius: 5px;">
                 <h5>Playlist</h5>
                 <p>Learn Coding From here...</p>
                 <button>

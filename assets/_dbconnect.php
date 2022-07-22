@@ -5,6 +5,6 @@ $username = "root" ;
 $password = "";
 $database = "coding_dojo" ;
 
-$conn = mysqli_connect($severname, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $database);
 
 ?>
