@@ -58,13 +58,16 @@
                     $result = mysqli_query($conn, $sql);
                     //  Cards starts from here 
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['category_id'];
+                        $cat = $row['category_name'];
+                        $desc = $row['category_desc'];
                         echo '  <div class="col-md-4 mb-3">
                                     <div class="card" style="width: 18rem;">
-                                        <img src="https://source.unsplash.com/400x300/?coding,'. $row['category_name'] .'" class="card-img-top" alt="..." height="200px">
+                                        <img src="https://source.unsplash.com/400x300/?coding,'.$cat.'" class="card-img-top" alt="..." height="200px">
                                         <div class="card-body">
-                                            <h5 class="card-title">' . $row['category_name'] . '</h5>
-                                            <p class="card-text">' . $row['category_desc'] . '</p>
-                                            <a href="#" class="btn btn-primary">View Threads</a>
+                                            <h5 class="card-title"><a class="text-decoration-none" href="threadlist.php?catid='.$id.'"> ' . $row['category_name'] . '</a></h5>
+                                            <p class="card-text">' . substr($desc, 0, 50) . ' ...</p>
+                                            <a  href="threadlist.php?catid='. $id .'" class="btn btn-primary text-decoration-none">View Threads</a>
                                         </div>
                                     </div>
                                 </div>';

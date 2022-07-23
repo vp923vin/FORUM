@@ -18,16 +18,22 @@
     <div class="container-fluid mt-5 ">
         <!-- MAIN Body -->
 
-        <!-- <h1>Coding Dojo - Categories</h1> -->
+        <?php
+        $id = $_GET['catid'];
+        $sql = "SELECT * FROM `categories` WHERE category_id= $id";
+        $result = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+
+        }
+        ?>
         <div class="row">
             <!-- Home Page Body -->
             <div class="col-md-9">
                 <!-- card for some Information about the community and their rules to follow -->
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="display-4">Welcome to Python Community</h1>
-                        <p class="lead">Python is a high-level, interpreted, general-purpose programming language. 
-                            Its design philosophy emphasizes code readability with the use of significant indentation.</p>
+                        <h1 class="display-4">Welcome to <?php $row['category_name'];?> Community</h1>
+                        <p class="lead"><?php $row['category_desc']?></p>
                         <hr class="my-4">
                         <h6>Some Rules Of this Community You Must Follow for Better interactions</h6>
                         <ul>
@@ -44,19 +50,69 @@
                 </div>
 
 
-                <div>
-                    <div class="d-flex align-items-center mt-3">
-                        <div class="flex-shrink-0">
-                            <h3>Browse questions</h3>
-                        <i class="fa-solid fa-user"></i>
+                <div class="col-md-8 mt-5">
+                    <h3>Browse questions</h3><br>
+                    <div class="d-flex align-items-center ">
+                        <div class="flex-shrink-0 mt-0">
+                        <i class="fa-solid fa-user fa-2xl"></i> 
                         </div>
-                        <div class="flex-grow-1 ms-3">
-                            This is some content from a media component. You can replace this with any content and adjust it as needed.
+                        <div class="flex-grow-1 mx-4">
+                            <h6 class="pt-3">Unable to install python ide?</h6>
+                            This is some content from a media component. 
+                            You can replace this with any content and adjust it as needed.
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 mt-0">
+                        <i class="fa-solid fa-user fa-2xl"></i> 
+                        </div>
+                        <div class="flex-grow-1 mx-4">
+                            <h6 class="pt-3">Unable to install python ide?</h6>
+                            
+                            This is some content from a media component. 
+                            You can replace this with any content and adjust it as needed.
+                            
+                            
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center ">
+                        <div class="flex-shrink-0 mt-0">
+                        <i class="fa-solid fa-user fa-2xl"></i> 
+                        </div>
+                        <div class="flex-grow-1 mx-4">
+                            <h6 class="pt-3">Unable to install python ide?</h6>
+                            This is some content from a media component. 
+                            You can replace this with any content and adjust it as needed.
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center ">
+                        <div class="flex-shrink-0 mt-0">
+                        <i class="fa-solid fa-user fa-2xl"></i> 
+                        </div>
+                        <div class="flex-grow-1 mx-4">
+                            <h6 class="pt-3">Unable to install python ide?</h6>
+                            This is some content from a media component. 
+                            You can replace this with any content and adjust it as needed.
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center ">
+                        <div class="flex-shrink-0 mt-0">
+                        <i class="fa-solid fa-user fa-2xl"></i> 
+                        </div>
+                        <div class="flex-grow-1 mx-4">
+                            <h6 class="pt-3">Unable to install python ide?</h6>
+                            This is some content from a media component. 
+                            You can replace this with any content and adjust it as needed.
                         </div>
                     </div>
                 </div>
                     
             </div>
+            <!-- Home Body ends Here -->
 
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-0" style="border: 1px solid #d6d6d4; border-radius: 5px;">
