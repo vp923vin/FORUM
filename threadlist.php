@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -20,23 +20,35 @@
 
         <?php
         $id = $_GET['catid'];
-        $sql = "SELECT * FROM `categories` WHERE category_id= $id";
+        $sql = "SELECT * FROM `categories` WHERE category_id= $id ";
         $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_assoc($result)){
-
+        while ($row = mysqli_fetch_assoc($result)) {
+            $catname = $row['category_name'];
+            $catdesc = $row['category_desc'];
+        }
+        ?>
+        <?php
+        $method = $_SERVER['REQUEST_METHOD'];
+        if($method == "POST"){
+            // Insert thread into database
+            $th_title = $_POST['title'];
+            $th_desc = $_POST['desc'];
+            $sql = "INSERT INTO `threads` ( `thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) 
+            VALUES ('$th_title', '$th_desc', '$id', '0', current_timestamp())";
+            $result = mysqli_query($conn, $sql);
         }
         ?>
         <div class="row">
             <!-- Home Page Body -->
             <div class="col-md-9">
                 <!-- card for some Information about the community and their rules to follow -->
-                <div class="card">
+                <div class="card alert alert-info">
                     <div class="card-body">
-                        <h1 class="display-4">Welcome to <?php $row['category_name'];?> Community</h1>
-                        <p class="lead"><?php $row['category_desc']?></p>
+                        <h1 class="display-4">Welcome to <?php echo $catname; ?> Community</h1>
+                        <p class="lead "><?php echo $catdesc; ?></p>
                         <hr class="my-4">
                         <h6>Some Rules Of this Community You Must Follow for Better interactions</h6>
-                        <ul>
+                        <ul class="text-danger">
                             <li>No Spam / Advertising / Self-promote in the forums.</li>
                             <li>Remain respectful of other members at all times.</li>
                             <li>Do not post “offensive” posts, links or images.</li>
@@ -44,79 +56,69 @@
                             <li>Do not PM users asking for help.</li>
                             <li>Do not post copyright-infringing material.</li>
                         </ul>
-                        
+
                         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                     </div>
                 </div>
-
+                <!-- Form -->
+                <div class="col-md-10 alert alert-light" >
+                    <h3 class="text-dark">Please fill out to ask your problem</h3>
+                    <form action="<?php $_SERVER['REQUEST_URI'];?>" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label text-dark">Problem</label>
+                            <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">write your problem short and crisp.</div>
+                        </div>
+                        <div class=" mb-3">
+                            <label for="desc" class="text-dark">Problem Detail</label>
+                            <textarea class="form-control"  name="desc" id="desc"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
 
                 <div class="col-md-8 mt-5">
                     <h3>Browse questions</h3><br>
-                    <div class="d-flex align-items-center ">
-                        <div class="flex-shrink-0 mt-0">
-                        <i class="fa-solid fa-user fa-2xl"></i> 
-                        </div>
-                        <div class="flex-grow-1 mx-4">
-                            <h6 class="pt-3">Unable to install python ide?</h6>
-                            This is some content from a media component. 
-                            You can replace this with any content and adjust it as needed.
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0 mt-0">
-                        <i class="fa-solid fa-user fa-2xl"></i> 
-                        </div>
-                        <div class="flex-grow-1 mx-4">
-                            <h6 class="pt-3">Unable to install python ide?</h6>
-                            
-                            This is some content from a media component. 
-                            You can replace this with any content and adjust it as needed.
-                            
-                            
-                        </div>
-                    </div>
+                    <?php
+                    $id = $_GET['catid'];
+                    $sql = "SELECT * FROM `threads` WHERE thread_cat_id= $id ";
+                    $result = mysqli_query($conn, $sql);
+                    $noResult = true;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $noResult = false;
+                        $id = $row['thread_id'];
+                        $title = $row['thread_title'];
+                        $desc = $row['thread_desc'];
 
-                    <div class="d-flex align-items-center ">
-                        <div class="flex-shrink-0 mt-0">
-                        <i class="fa-solid fa-user fa-2xl"></i> 
-                        </div>
-                        <div class="flex-grow-1 mx-4">
-                            <h6 class="pt-3">Unable to install python ide?</h6>
-                            This is some content from a media component. 
-                            You can replace this with any content and adjust it as needed.
-                        </div>
-                    </div>
+                        echo '<div class="d-flex align-items-center ">
+                                <div class="flex-shrink-0 mt-0">
+                                    <i class="fa-solid fa-user fa-2xl"></i> 
+                                </div>
+                                <div class="flex-grow-1 mx-4">
+                                    <h6 class="pt-3"><a class="text-decoration-none" href="thread.php?threadid=' . $id . '">' . $title . '</a></h6>
+                                    ' . $desc . '
+                                </div>
+                            </div>';
 
-                    <div class="d-flex align-items-center ">
-                        <div class="flex-shrink-0 mt-0">
-                        <i class="fa-solid fa-user fa-2xl"></i> 
-                        </div>
-                        <div class="flex-grow-1 mx-4">
-                            <h6 class="pt-3">Unable to install python ide?</h6>
-                            This is some content from a media component. 
-                            You can replace this with any content and adjust it as needed.
-                        </div>
-                    </div>
+                    }
+                    if($noResult){
+                        echo '<div class="alert alert-secondary" role="alert">
+                                <p class="display-6">No Threads Found</p>
+                                <p>Be the first person to ask the question</p>
+                            </div>';
+                    }
+                    ?>
 
-                    <div class="d-flex align-items-center ">
-                        <div class="flex-shrink-0 mt-0">
-                        <i class="fa-solid fa-user fa-2xl"></i> 
-                        </div>
-                        <div class="flex-grow-1 mx-4">
-                            <h6 class="pt-3">Unable to install python ide?</h6>
-                            This is some content from a media component. 
-                            You can replace this with any content and adjust it as needed.
-                        </div>
-                    </div>
+
                 </div>
-                    
+
             </div>
             <!-- Home Body ends Here -->
 
             <!-- SIDEBAR -->
-            <div class="col-md-3 mt-0" style="border: 1px solid #d6d6d4; border-radius: 5px;">
-                <h5>Playlist</h5>
+            <div class="col-md-3 mt-0 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+                <h5 class="mt-3">Playlist</h5>
                 <p>Learn Coding From here...</p>
                 <button>
                     <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">

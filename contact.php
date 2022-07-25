@@ -29,8 +29,8 @@
             </div>
 
             <!-- SIDEBAR -->
-            <div class="col-md-3 mt-3" style="border: 1px solid #d6d6d4; border-radius: 5px;">
-                <h5>Playlist</h5>
+            <div class="col-md-3 mt-3 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+                <h5 class="mt-3">Playlist</h5>
                 <p>Learn Coding From here...</p>
                 <button>
                     <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
