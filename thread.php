@@ -29,12 +29,12 @@
         ?>
         <div class="row">
             <!-- Home Page Body -->
+
             <div class="col-md-9">
                 <!-- card for some Information about the community and their rules to follow -->
+
                 <div class="card alert alert-info">
                     <div class="card-body">
-                        
-                        
                         <h6>Some Rules Of this Community You Must Follow for Better interactions</h6>
                         <ul class="text-danger">
                             <li>No Spam / Advertising / Self-promote in the forums.</li>
@@ -47,35 +47,79 @@
                         <hr class="my-4">
                         <h1 class="display-4 "><?php echo $title ;?></h1>
                         <p class="lead text-muted"><?php echo $desc ;?></p>
-                        <p ><b>Posted by : </b><i>Vipin Patel</i></p>
+                        <p class="text-dark">Posted by: <strong><i>Vipin Patel</i></strong></p> 
+                        
                         <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
                     </div>
                 </div>
-
-
-                <div class="col-md-8 mt-5">
-                    <h3>Discussions</h3><br>
-                    <!-- <?php
-                        // $id = $_GET['catid'];
-                        // $sql = "SELECT * FROM `threads` WHERE thread_cat_id= $id ";
-                        // $result = mysqli_query($conn, $sql);
-                        // while($row = mysqli_fetch_assoc($result)){
-                        //     $id = $row['thread_id'];
-                        //     $title = $row['thread_title'];
-                        //     $desc = $row['thread_desc'];
+                <?php
+                    $showAlert = false;
+                    $method = $_SERVER['REQUEST_METHOD'];
+                    if($method == "POST"){
+                        $showAlert = true;
+                        // Insert comments into database
                         
-                        //     echo'<div class="d-flex align-items-center ">
-                        //             <div class="flex-shrink-0 mt-0">
-                        //                 <i class="fa-solid fa-user fa-2xl"></i> 
-                        //             </div>
-                        //             <div class="flex-grow-1 mx-4">
-                        //                 <h6 class="pt-3"><a class="text-decoration-none" href="thread.php?thread-id='.$id.'">'.$title.'</a></h6>
-                        //                 '.$desc.'
-                        //             </div>
-                        //         </div>';
+                        $comment = $_POST['comment'];
+                        $sql = "INSERT INTO `comments` (`comment_content`, `thread_id`, `comment_by`, `comment_time`) 
+                        VALUES ('$comment', '$id', '0', current_timestamp())";
+                        $result = mysqli_query($conn, $sql);
+                        if($showAlert){
+                            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Success!</strong> your comment has been added.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        }
+                    }
+                ?>
 
-                        //  }
-                    ?> -->
+                <!-- Form -->
+                <div class="col-md-10 alert alert-light" >
+                    <h3 class="text-dark">Post Your Comment</h3>
+                    <form action="<?php $_SERVER['REQUEST_URI'];?>" method="POST">
+                        
+                        <div class=" mb-3 ">
+                            <label for="comment" class="text-dark">Type your comment</label>
+                            <textarea class="form-control"  name="comment" id="comment"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                    </form>
+                </div>
+
+                <!-- Comments and disscussion displayed here -->
+                <div class="col-md-8 mt-5 mx-4">
+                    <h3>Discussions</h3><br>
+                    <?php
+                        $id = $_GET['threadid'];
+                        $sql = "SELECT * FROM `comments` WHERE thread_id= $id ";
+                        $result = mysqli_query($conn, $sql);
+                        $noResult = true;
+                        
+                        while($row = mysqli_fetch_assoc($result)){
+                            $noResult = false;
+                            $id = $row['comment_id'];
+                            $content = $row['comment_content'];
+                            $comment_time = $row['comment_time'];
+
+                              echo '<div class="card my-1">
+                                        <div class="card-header"> 
+                                            <i class="fa-solid fa-user fa-2xl"></i>
+                                            <strong class=" mx-3">Anonymous User</strong>
+                                            <div class="float-end">'.$comment_time.'</div> 
+                                        </div>
+                                        <div class="card-body">
+                                            '.$content.'
+                                        </div>
+                                    </div>';
+
+                         }
+                         if($noResult){
+                            echo '<div class="alert alert-secondary" role="alert">
+                                    <p class="display-6">No Threads Found</p>
+                                    <p>Be the first person to start discussion</p>
+                                </div>';
+                        }
+                    ?>
 
                 </div>
                     
@@ -84,7 +128,7 @@
 
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-0 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
-                <h5 class="mt-3">Playlist</h5>
+                <h5 class="mt-3 text-dark">Playlist</h5>
                 <p>Learn Coding From here...</p>
                 <button>
                     <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
@@ -104,7 +148,7 @@
 
                 <!-- coding Websites   -->
                 <div>
-                    <h6>Some Of the Famous Coding Websites to Learn code and Compete with Others</h6>
+                    <h6 class="text-dark">Some Of the Famous Coding Websites to Learn code and Compete with Others</h6>
                     <ul>
                         <li><a class="text-decoration-none" href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a></li>
                         <li><a class="text-decoration-none" href="https://www.hackerearth.com/" target="_blank">HackerEarth</a></li>
@@ -116,7 +160,7 @@
                 </div>
 
                 <!-- social media icons -->
-                <h6>Follow Us on Social Media Platforms</h6>
+                <h6 class="text-dark">Follow Us on Social Media Platforms</h6>
 
                 <div class="mb-5 mt-3">
                     <a href="https://www.facebook.com/" target="_blank"><i class=" fa-brands fa-facebook-square fa-2xl mx-1"></i></a>

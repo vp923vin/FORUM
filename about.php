@@ -30,7 +30,7 @@
             </div>
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-3 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
-                <h5 class="mt-3">Playlist</h5>
+                <h5 class="mt-3 text-dark">Playlist</h5>
                 <p>Learn Coding From here...</p>
                 <button>
                     <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
@@ -50,7 +50,7 @@
 
                 <!-- coding Websites   -->
                 <div>
-                    <h6>Some Of the Famous Coding Websites to Learn code and Compete with Others</h6>
+                    <h6 class="text-dark">Some Of the Famous Coding Websites to Learn code and Compete with Others</h6>
                     <ul>
                         <li><a class="text-decoration-none" href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp</a></li>
                         <li><a class="text-decoration-none" href="https://www.hackerearth.com/" target="_blank">HackerEarth</a></li>
@@ -62,7 +62,7 @@
                 </div>
 
                 <!-- social media icons -->
-                <h6>Follow Us on Social Media Platforms</h6>
+                <h6 class="text-dark">Follow Us on Social Media Platforms</h6>
 
                 <div class="mb-5 mt-3">
                     <a href="https://www.facebook.com/" target="_blank"><i class=" fa-brands fa-facebook-square fa-2xl mx-1"></i></a>
