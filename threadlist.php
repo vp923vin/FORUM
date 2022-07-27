@@ -72,10 +72,14 @@
                     </div>
                       
                 </div>
-                <!-- Form -->
-                <div class="col-md-10 alert alert-light" >
-                    <h3 class="text-dark">Please fill out to ask your problem</h3>
-                    <form action="<?php $_SERVER['REQUEST_URI'];?>" method="POST">
+
+                <?php
+                // Form 
+                echo'<div class="col-md-10 alert alert-light" >
+                    <h3 class="text-dark">Please fill out to ask your problem</h3>';
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                
+                    echo'<form action="'.$_SERVER["REQUEST_URI"].'" method="POST">
                         <div class="mb-3">
                             <label for="title" class="form-label text-dark">Problem</label>
                             <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
@@ -87,11 +91,16 @@
                             
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+                    </form>';
+                }else{
+                    echo '<div class="fs-5 alert alert-secondary" role="alert">You are not allowed to fill the form or ask the question. Please, Login to post your Question</div>';
+                }
+                echo'</div>';
+                
+                ?>
 
                 <!-- Asked questions displayed here -->
-                <div class="col-md-8 mt-5">
+                <div class="col-md-8 mt-5 mx-4">
                     <h3>Browse questions</h3><br>
                     <?php
                     $id = $_GET['catid'];
@@ -134,12 +143,14 @@
 
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-0 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+                <button class="w-100 px-0 ">
+                    <input type="Search" placeholder="Seacrh.." class="border-0 mx-0" style="outline:none; width:80%;">
+                    <i class="fa-solid fa-magnifying-glass"></i> 
+                </button>
+            
                 <h5 class="mt-3 text-dark">Playlist</h5>
                 <p>Learn Coding From here...</p>
-                <button>
-                    <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+               
                 <!-- programming youtube videos playlist links-->
                 <div class="mt-3">
                     <ol>

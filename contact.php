@@ -30,12 +30,14 @@
 
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-3 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+                <button class="w-100 px-0 ">
+                    <input type="Search" placeholder="Seacrh.." class="border-0 mx-0" style="outline:none; width:80%;">
+                    <i class="fa-solid fa-magnifying-glass"></i> 
+                </button> 
+                
                 <h5 class="mt-3 text-dark">Playlist</h5>
                 <p>Learn Coding From here...</p>
-                <button>
-                    <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                
                 <!-- programming youtube videos playlist links-->
                 <div class="mt-3">
                     <ol>

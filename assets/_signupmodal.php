@@ -19,12 +19,6 @@
 
                     </div>
                     <div class="mb-3">
-                        <label for="confirm_email" class="form-label">Confirm Email address</label>
-                        <input type="email" class="form-control" id="confirm_email" name="confirm_email"/>
-
-                    </div>
-
-                    <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="password"/>
                     </div>

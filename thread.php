@@ -71,20 +71,25 @@
                         }
                     }
                 ?>
+                <?php
 
-                <!-- Form -->
-                <div class="col-md-10 alert alert-light" >
-                    <h3 class="text-dark">Post Your Comment</h3>
-                    <form action="<?php $_SERVER['REQUEST_URI'];?>" method="POST">
-                        
+                // Form
+                echo'<div class="col-md-10 alert alert-light" >
+                    <h3 class="text-dark">Post Your Comment</h3>';
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                    echo'<form action="'. $_SERVER['REQUEST_URI'].'" method="POST" >
                         <div class=" mb-3 ">
                             <label for="comment" class="text-dark">Type your comment</label>
                             <textarea class="form-control"  name="comment" id="comment"></textarea>
                             
                         </div>
                         <button type="submit" class="btn btn-primary">Post Comment</button>
-                    </form>
-                </div>
+                    </form>';
+                    }else{
+                        echo'<div class="fs-5 alert alert-secondary" role="alert">you are not allowed to post comment. please login to post your comment</div>';
+                    }
+                echo'</div>';
+                ?>
 
                 <!-- Comments and disscussion displayed here -->
                 <div class="col-md-8 mt-5 mx-4">
@@ -128,12 +133,14 @@
 
             <!-- SIDEBAR -->
             <div class="col-md-3 mt-0 alert alert-info" style="border: 1px solid #d6d6d4; border-radius: 5px;">
+                <button class="w-100 px-0 ">
+                    <input type="Search" placeholder="Seacrh.." class="border-0 mx-0" style="outline:none; width:80%;">
+                    <i class="fa-solid fa-magnifying-glass"></i> 
+                </button>
+            
                 <h5 class="mt-3 text-dark">Playlist</h5>
                 <p>Learn Coding From here...</p>
-                <button>
-                    <input type="Search" placeholder="Seacrh.." class="border-0" style="outline:none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+               
                 <!-- programming youtube videos playlist links-->
                 <div class="mt-3">
                     <ol>
